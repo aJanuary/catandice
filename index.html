@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Catan Dice</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	</head>
+	<body style='text-align: center; margin: 0'>
+		<a id='diceRoll' href='#' style='font-size: 220pt; color: black; text-decoration: none; width: position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: block; -webkit-tap-highlight-color: rgba(0,0,0,0);'>0</a>
+		<script>
+			function getRandomInt(min, max) {
+		    	return Math.floor(Math.random() * (max - min + 1)) + min;
+			}
+
+			function shuffle(o){
+    			for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    			return o;
+			};
+
+			var numbers = [];
+
+			function getNextDiceRollSequence() {
+				numbers = [2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 11, 11, 12];
+
+				var numberOfRandomItemsToAdd = getRandomInt(0, 18);
+
+				for (var i = 0; i < numberOfRandomItemsToAdd; i += 1) {
+					var diceRoll = getRandomInt(1, 6) + getRandomInt(1, 6);
+					numbers.push(diceRoll);
+				}
+
+				shuffle(numbers);
+			}
+
+			$('body').click(function(e) {
+				$('#diceRoll').fadeOut(function() {
+					$('#diceRoll').text(getNextDiceRoll());
+					$('#diceRoll').fadeIn();
+				});
+
+				e.preventDefault();
+				return false;
+			});
+
+			function getNextDiceRoll() {
+				if (numbers.length == 0) {
+					getNextDiceRollSequence();
+				}
+
+				return numbers.pop();
+			}
+		</script>
+	</body>
+</html>
