@@ -89,10 +89,8 @@
 				current.style['-webkit-animation'] = '';
 			})
 			current.innerHTML = dice.roll();
-			
-			alert('attaching listener');
-			document.addEventListener('click', function() {
-				alert('clicked');
+
+			function nextRoll() {
 				var previous = document.createElement('span');
 				previous.innerHTML = current.innerHTML;
 				previous.className = 'previous';
@@ -103,8 +101,10 @@
 
 				current.style['-webkit-animation'] = 'fadeIn 500ms';
 				current.innerHTML = dice.roll();
-			});
-			alert('listener attached');
+			}
+			
+			document.addEventListener('click', nextRoll);
+			document.addEventListener('touchend', nextRoll, true);
 		</script>
 	</body>
 </html>
