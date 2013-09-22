@@ -90,7 +90,9 @@
 			})
 			current.innerHTML = dice.roll();
 			
+			alert('attaching listener');
 			document.addEventListener('click', function() {
+				alert('clicked');
 				var previous = document.createElement('span');
 				previous.innerHTML = current.innerHTML;
 				previous.className = 'previous';
@@ -102,6 +104,7 @@
 				current.style['-webkit-animation'] = 'fadeIn 500ms';
 				current.innerHTML = dice.roll();
 			});
+			alert('listener attached');
 		</script>
 	</body>
 </html>
